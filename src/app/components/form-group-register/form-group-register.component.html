@@ -1,0 +1,33 @@
+<div class="container-main">
+  <div class="wrap-form">
+    <form [formGroup]="formGroupRegister" (ngSubmit)="post()">
+
+      <label>
+        Name:
+        <input type="text" formControlName="Name">
+      </label>
+
+      <label>
+        SurName:
+        <input type="text" formControlName="SurName">
+      </label>
+
+      <label>
+        Email:
+        <input type="text" formControlName="Email">
+      </label>
+
+      <label>
+        Phone:
+        <input type="text" formControlName="Phone">
+      </label>
+
+      <label>
+        Password:
+        <input type="text" formControlName="Password">
+      </label>
+      <button type="submit" [disabled]="!formGroupRegister.valid">Submit</button>
+
+    </form>
+  </div>
+</div>

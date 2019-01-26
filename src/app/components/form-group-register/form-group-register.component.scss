@@ -1,0 +1,30 @@
+.container-main {
+  box-sizing:border-box;
+  max-width: 900px;
+  margin: auto;
+  padding: 15px;
+  text-align:center;
+}
+
+.wrap-form {
+  margin-top: 30px;
+  border: 1px solid #127cc7;
+  padding: 25px;
+  display: inline-block;
+  border-radius: 10px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      display: flex;
+      margin-top: 10px;
+      justify-content: space-between;
+    }
+
+    button {
+      margin-top: 20px;
+    }
+  }
+}

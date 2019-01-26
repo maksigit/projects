@@ -1,0 +1,15 @@
+<mat-selection-list #shoes>
+    <mat-list-option *ngFor="let item of allTodo">
+        <div class="wrap-item" id={{item._id}}>
+            {{item.description}}
+        </div>
+    </mat-list-option>
+</mat-selection-list>
+
+<p>
+    Options selected: {{shoes.selectedOptions.selected.length}}
+</p>
+
+<input type="text" placeholder="{{'Create item'}}" (change)="listenInput($event)"/>
+<button (click)="sendItem()"> add item </button>
+<button (click)="remove()">Delete only one Checked</button>

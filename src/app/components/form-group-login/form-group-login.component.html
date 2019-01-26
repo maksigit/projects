@@ -1,0 +1,19 @@
+<div class="container-main">
+    <div class="wrap-form">
+        <form [formGroup]="formGroupLogin" (ngSubmit)="post()">
+
+            <label>
+                Email:
+                <input type="text" formControlName="Email">
+            </label>
+
+            <label>
+                Password:
+                <input type="text" formControlName="Password">
+            </label>
+
+            <button type="submit" [disabled]="!formGroupLogin.valid">Submit</button>
+
+        </form>
+    </div>
+</div>
