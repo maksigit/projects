@@ -8,7 +8,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class ServService {
     public userToken;
 
-
+    public SERV = 'https://lectorium.herokuapp.com/api/' ;
     public fromSession;
 
     constructor(private http: HttpClient) {
@@ -16,11 +16,11 @@ export class ServService {
     }
 
     postLog(body) {
-        return this.http.post('https://lectorium.herokuapp.com/api/login', body);
+        return this.http.post(this.SERV + 'login', body);
     }
 
     postReg(body) {
-        return this.http.post('https://lectorium.herokuapp.com/api/registration', body);
+        return this.http.post(this.SERV + 'registration', body);
     }
 
     getUserToken () {
@@ -39,19 +39,19 @@ export class ServService {
     getTodo () {
     const headers = new HttpHeaders().set('x-apikey', this.fromSession.token);
         console.log('HEADERS =>', headers);
-        return this.http.get('https://lectorium.herokuapp.com/api/todolist', { headers: headers });
+        return this.http.get(this.SERV + 'todolist', { headers: headers });
     }
 
     createItem(desk) {
         const bodyItem =  {
-            "userId": this.userToken,
-            "title": "lorem",
-            "description": desk,
-            "status": "done",
-            "selected": false
+            'userId': this.userToken,
+            'title': 'lorem',
+            'description': desk,
+            'status': 'done',
+            'selected': false
         };
         const headers = new HttpHeaders().set('x-apikey', this.fromSession.token);
-        return this.http.post('https://lectorium.herokuapp.com/api/todolist',
+        return this.http.post(this.SERV + 'todolist',
             bodyItem,
             { headers: headers }
             );
@@ -59,7 +59,7 @@ export class ServService {
 
     delItem(id) {
         const headers = new HttpHeaders().set('x-apikey', this.fromSession.token);
-        return this.http.delete('https://lectorium.herokuapp.com/api/todolist/' + id, { headers: headers });
+        return this.http.delete(this.SERV + 'todolist/' + id, { headers: headers });
     }
 }
 
