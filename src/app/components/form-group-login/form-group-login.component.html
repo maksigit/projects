@@ -1,19 +1,30 @@
 <div class="container-main">
     <div class="wrap-form">
-        <form [formGroup]="formGroupLogin" (ngSubmit)="post()">
+        <form [formGroup]="newForm" (ngSubmit)="post()">
+            <div class="wrap-item-form">
+                <label>
+                    Email:
+                    <input type="text" formControlName="Email">
+                </label>
 
-            <label>
-                Email:
-                <input type="text" formControlName="Email">
-            </label>
-
-            <label>
-                Password:
-                <input type="text" formControlName="Password">
-            </label>
-
-            <button type="submit" [disabled]="!formGroupLogin.valid">Submit</button>
-
+                <div class="alert alert-danger"
+                     *ngIf="newForm.controls['Email'].invalid && newForm.controls['Email'].touched">
+                    Не указан Email
+                </div>
+            </div>
+            <div class="wrap-item-form">
+                <label>
+                    Password:
+                    <input type="text" formControlName="Password">
+                </label>
+                <div class="alert alert-danger"
+                     *ngIf="newForm.controls['Password'].invalid && newForm.controls['Password'].touched">
+                    Не указан Пароль
+                </div>
+            </div>
+            <div class="wrap-item-form">
+                    <button [disabled]="!newForm.valid" (click)="post()">Submit</button>
+            </div>
         </form>
     </div>
 </div>

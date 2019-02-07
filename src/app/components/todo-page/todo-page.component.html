@@ -1,7 +1,8 @@
 <mat-selection-list #shoes>
     <mat-list-option *ngFor="let item of allTodo">
         <div class="wrap-item" id={{item._id}}>
-            {{item.description}}
+            <span class="do-this">do this => {{item.description.title}} </span>
+            <span class="create"> create: {{item.description.date}}</span>
         </div>
     </mat-list-option>
 </mat-selection-list>
@@ -13,3 +14,4 @@
 <input type="text" placeholder="{{'Create item'}}" (change)="listenInput($event)"/>
 <button (click)="sendItem()"> add item </button>
 <button (click)="remove()">Delete only one Checked</button>
+<button (click)="parseData()">Sorting by date</button>

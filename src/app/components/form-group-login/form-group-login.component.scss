@@ -12,4 +12,22 @@
   padding: 25px;
   display: inline-block;
   border-radius: 10px;
+
+
+  form {
+    display: flex;
+  }
+
+  .wrap-item-form {
+    display: inline-block;
+
+
+    .alert-danger {
+      color: red;
+    }
+  }
+
+  .wrap-item-form:first-child {
+    margin-right: 15px;
+  }
 }

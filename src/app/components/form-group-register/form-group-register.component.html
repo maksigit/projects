@@ -1,32 +1,53 @@
 <div class="container-main">
   <div class="wrap-form">
-    <form [formGroup]="formGroupRegister" (ngSubmit)="post()">
+    <form [formGroup]="newForm" novalidate (ngSubmit)="post()">
 
       <label>
         Name:
-        <input type="text" formControlName="Name">
+        <input type="text" name="name" formControlName="Name">
       </label>
+      <div class="alert alert-danger"
+           *ngIf="newForm.controls['Name'].invalid && newForm.controls['Name'].touched">
+        Не указано Name
+      </div>
 
       <label>
         SurName:
         <input type="text" formControlName="SurName">
       </label>
+      <div class="alert alert-danger"
+           *ngIf="newForm.controls['SurName'].invalid && newForm.controls['SurName'].touched">
+        Не указано SurName
+      </div>
 
       <label>
         Email:
         <input type="text" formControlName="Email">
       </label>
+      <div class="alert alert-danger"
+           *ngIf="newForm.controls['Email'].invalid && newForm.controls['Email'].touched">
+        Не указано Email
+      </div>
 
       <label>
         Phone:
-        <input type="text" formControlName="Phone">
+        <input formControlName="Phone">
       </label>
+      <div class="alert alert-danger"
+           *ngIf="newForm.controls['Phone'].invalid && newForm.controls['Phone'].touched">
+        Не указано Phone
+      </div>
 
       <label>
         Password:
         <input type="text" formControlName="Password">
       </label>
-      <button type="submit" [disabled]="!formGroupRegister.valid">Submit</button>
+
+      <div class="alert alert-danger"
+           *ngIf="newForm.controls['Password'].invalid && newForm.controls['Password'].touched">
+        Не указано Password
+      </div>
+      <button type="submit" >Submit</button>
 
     </form>
   </div>
