@@ -12,7 +12,6 @@ import {DatePipe} from '@angular/common';
 export class TodoPageComponent implements OnInit {
 
     allTodo;
-    sortTodo;
     titleDate = {
         title: '',
         date: null,
@@ -21,7 +20,6 @@ export class TodoPageComponent implements OnInit {
     id;
 
     constructor(private api: ServService) {
-        console.log('this TODO =>', this);
     }
 
     ngOnInit() {
@@ -32,7 +30,6 @@ export class TodoPageComponent implements OnInit {
         this.api.getSession();
         this.api.getTodo().subscribe((date) => {
                 this.allTodo = date ? date : '';
-                console.log('Eto moy TODOOOOOO =>', date);
             }
         );
     }
@@ -42,7 +39,6 @@ export class TodoPageComponent implements OnInit {
     }
 
     listenInput(e) {
-        console.log(e.target.value);
         this.titleDate.title = e.target.value ? e.target.value : null;
         const d = new Date();
         this.titleDate.date = ('0' + d.getDate()).slice(-2) + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' +
@@ -57,19 +53,15 @@ export class TodoPageComponent implements OnInit {
 
     getId() {
         const allItems = document.querySelectorAll('.mat-list-item');
-        console.log(allItems);
         for (let i = 0; i < allItems.length; i++) {
             if (allItems[i].getAttribute('aria-selected') === 'true') {
-                console.log('bingo');
                 const checkId = allItems[i].querySelector('.wrap-item');
                 this.id = checkId.id;
-                console.log('NEXTchild =>', checkId.id);
             }
         }
     }
 
     parseData() {
-        console.log('temARR => ', this.allTodo.length);
         for (let i = 0; i < this.allTodo.length; i++) {
             for (let j = i; j < this.allTodo.length - 1; j++) {
                 if ((Date.parse(this.allTodo[i].description.date)) < (Date.parse(this.allTodo[j + 1].description.date))) {

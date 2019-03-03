@@ -47,7 +47,7 @@
            *ngIf="newForm.controls['Password'].invalid && newForm.controls['Password'].touched">
         Не указано Password
       </div>
-      <button type="submit" >Submit</button>
+      <button [disabled]="!newForm.valid" type="submit" (click)="post()">Submit</button>
 
     </form>
   </div>

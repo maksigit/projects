@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
-import { ServService } from '../../myService/serv.service';
+import {ServService} from '../../myService/serv.service';
+import {Router} from '@angular/router';
 
 
 @Component({
-  selector: 'app-form-group-register',
-  templateUrl: './form-group-register.component.html',
-  styleUrls: ['./form-group-register.component.scss']
+    selector: 'app-form-group-register',
+    templateUrl: './form-group-register.component.html',
+    styleUrls: ['./form-group-register.component.scss']
 })
 export class FormGroupRegisterComponent implements OnInit {
 
@@ -30,39 +31,25 @@ export class FormGroupRegisterComponent implements OnInit {
                 Validators.minLength(12),
                 Validators.maxLength(12),
                 Validators.pattern('[0-9]+'),
-                ]),
+            ]),
             Password: new FormControl('',
                 Validators.required),
         }
     );
 
-  constructor(private api: ServService) { }
+    constructor(private api: ServService, private router: Router) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-    // formGroupRegister = new FormGroup({
-    //     Name: new FormControl(''),
-    //     SurName: new FormControl(''),
-    //     Email: new FormControl(''),
-    //     Phone: new FormControl(''),
-    //     Password: new FormControl(''),
-    // });
-
-    // onSubmit() {
-    //     // TODO: Use EventEmitter with form value
-    //     console.warn(this.formGroupRegister.value);
-    // }
-
-    // get(){
-    //     this.api.get().subscribe((data) => this.content = data)
-    // }
     post() {
-        console.log('bodyREG=>', this.newForm.value);
-        this.api.postReg(this.newForm.value).subscribe((date) => {console.log('REG=>', date);
-        this.api.userToken = date;
-        this.api.getUserToken();
-        this.api.setSession(date);
+        this.api.postReg(this.newForm.value).subscribe(() => {
+            const inSession = this.api.getSession();
+            if (inSession) {
+                this.api.setSession({token: ''});
+            }
+            this.router.navigate(['/login-page']);
         });
     }
 

@@ -25,18 +25,7 @@ export class FormGroupLoginComponent implements OnInit {
     ngOnInit() {
     }
 
-    // formGroupLogin = new FormGroup({
-    //     Email: new FormControl(''),
-    //     Password: new FormControl(''),
-    // });
-
-    // onSubmit() {
-    //     // TODO: Use EventEmitter with form value
-    //     console.warn(this.formGroupLogin.value);
-    // }
-
     post() {
-        console.log('from login =>', this.newForm.value);
         this.api.postLog(this.newForm.value).subscribe((date) => {
                 if (date) {
                     this.api.setSession(date);
@@ -44,7 +33,6 @@ export class FormGroupLoginComponent implements OnInit {
                     todo.setAttribute(
                         'style', 'display: inline-block;');
                 } else {
-                    console.log('GDE TOKEN?????');
                 }
             }
         );

@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {environment} from '../../environments/environment.prod';
 
 @Injectable({
-    providedIn: "root"
+    providedIn: 'root'
 })
 
 export class ServService {
     public userToken;
 
-    public SERV = 'https://lectorium.herokuapp.com/api/' ;
     public fromSession;
 
     constructor(private http: HttpClient) {
@@ -16,15 +16,11 @@ export class ServService {
     }
 
     postLog(body) {
-        return this.http.post(this.SERV + 'login', body);
+        return this.http.post(environment.apiUrl + 'login', body);
     }
 
     postReg(body) {
-        return this.http.post(this.SERV + 'registration', body);
-    }
-
-    getUserToken () {
-        console.log('ETO ZAPISAN TOKEN =>', this.userToken);
+        return this.http.post(environment.apiUrl + 'registration', body);
     }
 
     setSession (str) {
@@ -33,13 +29,12 @@ export class ServService {
 
     getSession() {
        this.fromSession = JSON.parse(sessionStorage.getItem('myKey'));
-        console.log('FROMSESSION =>', this.fromSession);
+       return this.fromSession;
     }
 
     getTodo () {
     const headers = new HttpHeaders().set('x-apikey', this.fromSession.token);
-        console.log('HEADERS =>', headers);
-        return this.http.get(this.SERV + 'todolist', { headers: headers });
+        return this.http.get(environment.apiUrl + 'todolist', { headers: headers });
     }
 
     createItem(desk) {
@@ -51,7 +46,7 @@ export class ServService {
             'selected': false
         };
         const headers = new HttpHeaders().set('x-apikey', this.fromSession.token);
-        return this.http.post(this.SERV + 'todolist',
+        return this.http.post(environment.apiUrl + 'todolist',
             bodyItem,
             { headers: headers }
             );
@@ -59,7 +54,7 @@ export class ServService {
 
     delItem(id) {
         const headers = new HttpHeaders().set('x-apikey', this.fromSession.token);
-        return this.http.delete(this.SERV + 'todolist/' + id, { headers: headers });
+        return this.http.delete(environment.apiUrl + 'todolist/' + id, { headers: headers });
     }
 }
 
