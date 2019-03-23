@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ServService} from '../../myService/serv.service';
 import { FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-form-group-login',
@@ -19,7 +20,7 @@ export class FormGroupLoginComponent implements OnInit {
                 Validators.required),
         }
     );
-    constructor(private api: ServService) {
+    constructor(private api: ServService, private router: Router) {
     }
 
     ngOnInit() {
@@ -32,6 +33,7 @@ export class FormGroupLoginComponent implements OnInit {
                     const todo = document.querySelector('.todo-list');
                     todo.setAttribute(
                         'style', 'display: inline-block;');
+                    this.router.navigate(['/todo-page']);
                 } else {
                 }
             }
